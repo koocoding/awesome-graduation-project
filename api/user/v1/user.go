@@ -14,18 +14,21 @@ type ProfileRes struct {
 }
 
 type SignUpReq struct {
-	g.Meta    `path:"/user/sign-up" method:"post" tags:"UserService" summary:"Sign up a new user account"`
-	Passport  string `v:"required|length:6,16"`
-	Password  string `v:"required|length:6,16"`
-	Password2 string `v:"required|length:6,16|same:Password"`
-	Nickname  string
+	g.Meta      `path:"/user/sign-up" method:"post" tags:"UserService" summary:"Sign up a new user account"`
+	Passport    string `v:"required|length:6,16|regex:^[a-zA-Z]"`
+	Password    string `v:"required|length:6,16"`
+	Password2   string `v:"required|length:6,16|same:Password"`
+	Nickname    string
+	PhoneNumber string `v:"required|phone-loose"`
+	VerifyCode  string `v:"required`
 }
 type SignUpRes struct{}
 
 type SignInReq struct {
-	g.Meta   `path:"/user/sign-in" method:"post" tags:"UserService" summary:"Sign in with exist account"`
-	Passport string `v:"required"`
-	Password string `v:"required"`
+	g.Meta      `path:"/user/sign-in" method:"post" tags:"UserService" summary:"Sign in with exist account"`
+	Passport    string `v:"required-without:PhoneNumber"`
+	PhoneNumber string `v:"required-without:Passport|phone-loose"`
+	Password    string `v:"required"`
 }
 type SignInRes struct{}
 
@@ -52,3 +55,10 @@ type SignOutReq struct {
 	g.Meta `path:"/user/sign-out" method:"post" tags:"UserService" summary:"Sign out current user"`
 }
 type SignOutRes struct{}
+
+type VerifyCodeSendReq struct {
+	g.Meta      `path:"/user/send-vcode" method:"post" tags:"UserService" summary:"Sign out current user"`
+	PhoneNumber string `v:"required|phone-loose"`
+}
+type VerifyCodeSendRes struct {
+}

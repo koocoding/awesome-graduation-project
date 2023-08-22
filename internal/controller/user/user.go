@@ -5,7 +5,7 @@ import (
 
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"github.com/gogf/gf-demo-user/v2/api/user/v1"
+	v1 "github.com/gogf/gf-demo-user/v2/api/user/v1"
 	"github.com/gogf/gf-demo-user/v2/internal/model"
 	"github.com/gogf/gf-demo-user/v2/internal/service"
 )
@@ -19,9 +19,11 @@ func New() *Controller {
 // SignUp is the API for user sign up.
 func (c *Controller) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.SignUpRes, err error) {
 	err = service.User().Create(ctx, model.UserCreateInput{
-		Passport: req.Passport,
-		Password: req.Password,
-		Nickname: req.Nickname,
+		Passport:    req.Passport,
+		Password:    req.Password,
+		Nickname:    req.Nickname,
+		PhoneNumber: req.PhoneNumber,
+		VerifyCode:  req.VerifyCode,
 	})
 	return
 }
@@ -78,5 +80,10 @@ func (c *Controller) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1.P
 	res = &v1.ProfileRes{
 		User: service.User().GetProfile(ctx),
 	}
+	return
+}
+
+func (c *Controller) VerifyCodeSend(ctx context.Context, req *v1.VerifyCodeSendReq) (res *v1.VerifyCodeSendRes, err error) {
+	err = service.User().VerifyCodeSend(ctx, req.PhoneNumber)
 	return
 }

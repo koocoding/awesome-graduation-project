@@ -2,8 +2,8 @@
 gfcli:
   gen:
     dao:
-      - link: "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
-        tables: "user"
+      - link: "mysql:root:jx020606@tcp(127.0.0.1:3306)/user"
+        tables: ""
         removePrefix: "gf_"
         descriptionTag: true
         noModelComment: true
