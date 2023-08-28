@@ -24,7 +24,7 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
 			s.SetSessionMaxAge(time.Minute)
-			s.SetSessionStorage(gsession.NewStorageRedis(g.Redis()))
+			s.SetSessionStorage(gsession.NewStorageRedisHashTable(g.Redis()))
 			s.Use(ghttp.MiddlewareHandlerResponse)
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				// Group middlewares.
