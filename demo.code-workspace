@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"name": "demo",
+			"path": "."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "default",
+					"enableSsl": "Disabled"
+				},
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 3306,
+				"driver": "MySQL",
+				"name": "user",
+				"group": "user",
+				"username": "root",
+				"database": "user",
+				"password": "jx020606"
+			}
+		]
+	}
+}
