@@ -20,7 +20,7 @@ type SignUpReq struct {
 	Password2   string `v:"required|length:6,16|same:Password"`
 	Nickname    string
 	PhoneNumber string `v:"required|phone-loose"`
-	VerifyCode  string `v:"required`
+	VerifyCode  string
 }
 type SignUpRes struct{}
 

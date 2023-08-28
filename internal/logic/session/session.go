@@ -6,6 +6,7 @@ import (
 	"github.com/gogf/gf-demo-user/v2/internal/consts"
 	"github.com/gogf/gf-demo-user/v2/internal/model/entity"
 	"github.com/gogf/gf-demo-user/v2/internal/service"
+	//"github.com/gogf/gf/v2/os/gsession"
 )
 
 type (

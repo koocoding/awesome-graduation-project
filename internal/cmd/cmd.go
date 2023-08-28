@@ -2,15 +2,17 @@ package cmd
 
 import (
 	"context"
-
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/net/goai"
-	"github.com/gogf/gf/v2/os/gcmd"
+	"time"
 
 	"github.com/gogf/gf-demo-user/v2/internal/consts"
 	"github.com/gogf/gf-demo-user/v2/internal/controller/user"
 	"github.com/gogf/gf-demo-user/v2/internal/service"
+	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/net/goai"
+	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gogf/gf/v2/os/gsession"
 )
 
 var (
@@ -21,6 +23,8 @@ var (
 		Brief: "start http server of simple goframe demos",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
+			s.SetSessionMaxAge(time.Minute)
+			s.SetSessionStorage(gsession.NewStorageRedis(g.Redis()))
 			s.Use(ghttp.MiddlewareHandlerResponse)
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				// Group middlewares.

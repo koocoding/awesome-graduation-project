@@ -22,3 +22,8 @@ database:
     link: "mysql:root:jx020606@tcp(127.0.0.1:3306)/user"
     debug: true
 
+redis:
+  default:
+    address: 127.0.0.1:6379
+    db:      1
+
