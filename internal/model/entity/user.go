@@ -17,4 +17,5 @@ type User struct {
 	CreateAt    *gtime.Time `json:"createAt"    description:"Created Time"`
 	UpdateAt    *gtime.Time `json:"updateAt"    description:"Updated Time"`
 	Phonenumber string      `json:"phonenumber" description:""`
+	IsAdmin     int         `json:"isAdmin"     description:""`
 }

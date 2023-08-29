@@ -16,16 +16,18 @@ type (
 	IUser interface {
 		// Create creates user account.
 		Create(ctx context.Context, in model.UserCreateInput) (err error)
+		AdminCreate(ctx context.Context, in model.AdminSignUp) (err error)
 		// IsSignedIn checks and returns whether current user is already signed-in.
 		IsSignedIn(ctx context.Context) bool
 		// SignIn creates session for given user account.
-		SignIn(ctx context.Context, in model.UserSignInInput) (err error)
+		SignIn(ctx context.Context, in model.UserSignInInput) (token string, err error)
 		// SignOut removes the session for current signed-in user.
 		SignOut(ctx context.Context) error
 		// IsPassportAvailable checks and returns given passport is available for signing up.
 		IsPassportAvailable(ctx context.Context, passport string) (bool, error)
 		// IsNicknameAvailable checks and returns given nickname is available for signing up.
 		IsNicknameAvailable(ctx context.Context, nickname string) (bool, error)
+		IsPhonenumberAvailable(ctx context.Context, phonenumber string) (bool, error)
 		// GetProfile retrieves and returns current user info in session.
 		GetProfile(ctx context.Context) *entity.User
 		VerifyCodeSend(ctx context.Context, PhoneNumber string) (err error)

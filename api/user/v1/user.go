@@ -30,7 +30,9 @@ type SignInReq struct {
 	PhoneNumber string `v:"required-without:Passport|phone-loose"`
 	Password    string `v:"required"`
 }
-type SignInRes struct{}
+type SignInRes struct {
+	Token string `json:"signtoken"`
+}
 
 type CheckPassportReq struct {
 	g.Meta   `path:"/user/check-passport" method:"post" tags:"UserService" summary:"Check passport available"`
@@ -62,3 +64,12 @@ type VerifyCodeSendReq struct {
 }
 type VerifyCodeSendRes struct {
 }
+
+type AdminSignUpReq struct {
+	g.Meta   `path:"/user/sign-up" method:"post" tags:"UserService" summary:"Sign up a new user account"`
+	Passport string `v:"required|length:6,16|regex:^[a-zA-Z]"`
+	Password string `v:"required|length:6,16"`
+	Nickname string
+}
+
+type AdiminSignUpRes struct{}

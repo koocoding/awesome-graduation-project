@@ -13,3 +13,8 @@ type UserSignInInput struct {
 	PhoneNumber string
 	Password    string
 }
+type AdminSignUp struct {
+	Passport string
+	Password string
+	Nickname string
+}

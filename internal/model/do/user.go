@@ -19,4 +19,5 @@ type User struct {
 	CreateAt    *gtime.Time // Created Time
 	UpdateAt    *gtime.Time // Updated Time
 	Phonenumber interface{} //
+	IsAdmin     interface{} //
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/gogf/gf-demo-user/v2/internal/consts"
 	"github.com/gogf/gf-demo-user/v2/internal/model/entity"
 	"github.com/gogf/gf-demo-user/v2/internal/service"
-	//"github.com/gogf/gf/v2/os/gsession"
+	"github.com/gogf/gf/v2/crypto/gmd5"
 )
 
 type (
@@ -22,8 +22,12 @@ func New() service.ISession {
 }
 
 // SetUser sets user into the session.
-func (s *sSession) SetUser(ctx context.Context, user *entity.User) error {
-	return service.BizCtx().Get(ctx).Session.Set(consts.UserSessionKey, user)
+func (s *sSession) SetUser(ctx context.Context, user *entity.User) (string, error) {
+	token, err := gmd5.Encrypt(user)
+	if err != nil {
+		return token, err
+	}
+	return token, service.BizCtx().Get(ctx).Session.Set(consts.UserSessionKey+":"+user.Passport, token)
 }
 
 // GetUser retrieves and returns the user from session.

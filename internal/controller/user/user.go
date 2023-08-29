@@ -30,10 +30,11 @@ func (c *Controller) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.Sig
 
 // SignIn is the API for user sign in.
 func (c *Controller) SignIn(ctx context.Context, req *v1.SignInReq) (res *v1.SignInRes, err error) {
-	err = service.User().SignIn(ctx, model.UserSignInInput{
+	token, err := service.User().SignIn(ctx, model.UserSignInInput{
 		Passport: req.Passport,
 		Password: req.Password,
 	})
+	res.Token = token
 	return
 }
 
@@ -85,5 +86,14 @@ func (c *Controller) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1.P
 
 func (c *Controller) VerifyCodeSend(ctx context.Context, req *v1.VerifyCodeSendReq) (res *v1.VerifyCodeSendRes, err error) {
 	err = service.User().VerifyCodeSend(ctx, req.PhoneNumber)
+	return
+}
+
+func (c *Controller) AdminSignUp(ctx context.Context, req *v1.AdminSignUpReq) (res *v1.AdiminSignUpRes, err error) {
+	err = service.User().AdminCreate(ctx, model.AdminSignUp{
+		Passport: req.Passport,
+		Password: req.Password,
+		Nickname: req.Nickname,
+	})
 	return
 }
