@@ -5,7 +5,9 @@ import (
 
 	"github.com/gogf/gf/v2/net/ghttp"
 
+	"github.com/gogf/gf-demo-user/v2/internal/dao"
 	"github.com/gogf/gf-demo-user/v2/internal/model"
+	"github.com/gogf/gf-demo-user/v2/internal/model/do"
 	"github.com/gogf/gf-demo-user/v2/internal/service"
 )
 
@@ -45,6 +47,12 @@ func (s *sMiddleware) Auth(r *ghttp.Request) {
 	} else {
 		r.Response.WriteStatus(http.StatusForbidden)
 	}
+	dao.User.Ctx(ctx).Where(do.User{
+		Passport: in.Passport,
+	}).Data(do.User{
+		Rank: in.Rank,
+	}).Update()
+
 }
 
 // CORS allows Cross-origin resource sharing.

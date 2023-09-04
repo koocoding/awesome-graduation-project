@@ -29,11 +29,12 @@ func (c *Controller) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.Sig
 }
 
 // SignIn is the API for user sign in.
-func (c *Controller) SignIn(ctx context.Context, req *v1.SignInReq) (res *v1.SignInRes, err error) {
+func (c *Controller) SignIn(ctx context.Context, req *v1.SignInReq) (res v1.SignInRes, err error) {
 	token, err := service.User().SignIn(ctx, model.UserSignInInput{
 		Passport: req.Passport,
 		Password: req.Password,
 	})
+
 	res.Token = token
 	return
 }
@@ -94,6 +95,14 @@ func (c *Controller) AdminSignUp(ctx context.Context, req *v1.AdminSignUpReq) (r
 		Passport: req.Passport,
 		Password: req.Password,
 		Nickname: req.Nickname,
+	})
+	return
+}
+
+func (c *Controller) Rankset(ctx context.Context, req *v1.RankSetReq) (res *v1.RankSetRes, err error) {
+	err = service.User().Rankset(ctx, model.Rankset{
+		Passport: req.Passport,
+		Rank:     req.Rank,
 	})
 	return
 }
