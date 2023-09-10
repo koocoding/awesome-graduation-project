@@ -18,4 +18,6 @@ type User struct {
 	UpdateAt    *gtime.Time `json:"updateAt"    description:"Updated Time"`
 	Phonenumber string      `json:"phonenumber" description:""`
 	IsAdmin     int         `json:"isAdmin"     description:""`
+	Rank        string      `json:"rank"        description:""`
+	TimeStamp 	int64
 }

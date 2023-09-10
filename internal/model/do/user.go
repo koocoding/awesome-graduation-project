@@ -20,4 +20,5 @@ type User struct {
 	UpdateAt    *gtime.Time // Updated Time
 	Phonenumber interface{} //
 	IsAdmin     interface{} //
+	Rank        interface{} //
 }

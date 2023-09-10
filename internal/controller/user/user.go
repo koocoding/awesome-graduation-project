@@ -30,11 +30,13 @@ func (c *Controller) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.Sig
 
 // SignIn is the API for user sign in.
 func (c *Controller) SignIn(ctx context.Context, req *v1.SignInReq) (res v1.SignInRes, err error) {
-	token, err := service.User().SignIn(ctx, model.UserSignInInput{
+	var token string
+	token, err = service.User().SignIn(ctx, model.UserSignInInput{
 		Passport: req.Passport,
 		Password: req.Password,
 	})
 
+	println(token)
 	res.Token = token
 	return
 }

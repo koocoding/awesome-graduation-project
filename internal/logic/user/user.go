@@ -30,6 +30,14 @@ func init() {
 func New() service.IUser {
 	return &sUser{}
 }
+func (s *sUser) Rankset(ctx context.Context, in model.Rankset) (err error) {
+	_, err = dao.User.Ctx(ctx).Where(do.User{
+		Passport: in.Passport,
+	}).Data(do.User{
+		Rank: in.Rank,
+	}).Update()
+	return err
+}
 
 // Create creates user account.
 func (s *sUser) Create(ctx context.Context, in model.UserCreateInput) (err error) {

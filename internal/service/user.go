@@ -14,6 +14,7 @@ import (
 
 type (
 	IUser interface {
+		Rankset(ctx context.Context, in model.Rankset) (err error)
 		// Create creates user account.
 		Create(ctx context.Context, in model.UserCreateInput) (err error)
 		AdminCreate(ctx context.Context, in model.AdminSignUp) (err error)

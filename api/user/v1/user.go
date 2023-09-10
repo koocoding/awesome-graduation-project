@@ -31,7 +31,7 @@ type SignInReq struct {
 	Password    string `v:"required"`
 }
 type SignInRes struct {
-	Token string `json:"signtoken"`
+	Token string
 }
 
 type CheckPassportReq struct {
@@ -73,3 +73,11 @@ type AdminSignUpReq struct {
 }
 
 type AdiminSignUpRes struct{}
+
+type RankSetReq struct {
+	g.Meta   `path:"/user/Rankset" method:"post" tags:"UserService" summary:"set a rank"`
+	Rank     string
+	Passport string
+}
+
+type RankSetRes struct{}

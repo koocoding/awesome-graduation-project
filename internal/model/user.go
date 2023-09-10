@@ -18,3 +18,8 @@ type AdminSignUp struct {
 	Password string
 	Nickname string
 }
+
+type Rankset struct {
+	Passport string
+	Rank     string
+}
