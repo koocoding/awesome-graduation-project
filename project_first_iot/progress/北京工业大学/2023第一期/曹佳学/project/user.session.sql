@@ -1,0 +1,1 @@
+ALTER TABLE user add rank varchar not null(20);

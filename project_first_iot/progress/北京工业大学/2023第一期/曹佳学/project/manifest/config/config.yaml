@@ -1,0 +1,29 @@
+# HTTP Server.
+server:
+  address: ":8000"
+  dumpRouterMap: true
+  routeOverWrite: true
+  accessLogEnabled: true
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+# Global logging.
+logger:
+  level: "all"
+  stdout: true
+
+# Database.
+database:
+  logger:
+    level: "all"
+    stdout: true
+
+  default:
+    link: "mysql:root:jx020606@tcp(127.0.0.1:3306)/user"
+    debug: true
+
+redis:
+  default:
+    address: 127.0.0.1:6379
+    db:      1
+
